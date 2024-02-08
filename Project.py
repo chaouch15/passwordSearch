@@ -13,7 +13,7 @@ from tqdm import tqdm
 import spacy
 import nltk
 #nltk.download('punkt')
-#nltk.download('stopwords')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from vaderSentiment_fr.vaderSentiment import SentimentIntensityAnalyzer
 from nltk import tokenize
