@@ -5,6 +5,7 @@ from modules.assemble_and_filter import filter_df_tags, filter_ner_neutral_tags,
 
 #No impact on load time
 from modules.password_generator import generate_passwords, generate_personal_passwords
+from modules.effort_estimator import estimate_effort
 from modules.pdf_reader import process_pdf, process_upload_files
 from flask import Flask, render_template, request, redirect
 import os
@@ -66,11 +67,11 @@ def my_link():
 
     # Generate passwords based on filtered NER and df_words
     #result = generate_passwords(filtered_ner_neutral, filtered_df_words)
-    print("profile : ", NAME)
-    result = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
-
-
-    return str(result)
+    result, estimation = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
+    
+#    return str(result)
+    return estimation
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

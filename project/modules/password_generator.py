@@ -1,4 +1,6 @@
 import itertools
+from .effort_estimator import estimate_effort
+
 
 
 # Function to generate passwords based on named entities and words
@@ -71,7 +73,7 @@ def generate_personal_passwords(filtered_ner_neutral, filtered_df_words,surname,
     personal_special_list = list(itertools.chain.from_iterable(personal_special_dict.values()))
 
     # Adding profile
-    personal_string_list=[name,surname] + personal_string_list
+    personal_string_list=[name.lower(),surname.lower()] + personal_string_list
     personal_digit_list =[birthday[:4]] + personal_digit_list 
 
     all_combinations = []
@@ -87,4 +89,4 @@ def generate_personal_passwords(filtered_ner_neutral, filtered_df_words,surname,
     # Filter combinations with length >= 8
     valid_passwords = [password for password in all_combinations if len(password) >= 8]
 
-    return valid_passwords
+    return valid_passwords, estimate_effort(personal_string_list,personal_digit_list,personal_special_list)
