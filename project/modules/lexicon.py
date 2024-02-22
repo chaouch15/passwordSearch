@@ -52,6 +52,6 @@ def detect_emotion(tweet):
 def from_text_to_positive_sentences(list_sentences):
     positive_sentences = []
     for sentence in list_sentences:
-        if get_sentiment(sentence) > 0:
+        if get_sentiment(sentence) >= 0:
             positive_sentences.append(sentence)
     return positive_sentences
