@@ -3,25 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estimation Result</title>
+    <title>Estimation d'Effort</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc; /* Nude beige background */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 50px; /* Adjusted margin top to match the container in the first style */
+        }
+        .catchy-text {
+            font-size: 1.2em; /* Larger font size */
+            color: #800000; /* Burgundy color */
+            font-weight: bold; /* Bold text */
+            margin-top: 20px; /* Add some space between title and text */
+        }
+        table {
+            width: 50%; /* Match the width of the container in the first style */
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white; /* Match the background color of the container in the first style */
+            border-radius: 10px; /* Match the border-radius of the container in the first style */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Match the box-shadow of the container in the first style */
+            margin-top: 20px; /* Add margin-top for spacing */
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Match the border color of list items in the first style */
+        }
+        th {
+            background-color: #f8f8f8; /* Match the background color of list items in the first style */
+        }
+    </style>
 </head>
 <body>
-    <h2>Estimation Result</h2>
-    <table border="1">
-        <tr>
-            <th>Category</th>
-            <th>Values</th>
-        </tr>
-        {% for category, values in estimation %}
-        <tr>
-            <td>{{ category }}</td>
-            <td>
-                {% for value in values %}
-                    {{ value }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h2>Estimation d'Effort</h2>
+        <p class="catchy-text">C'est le nombre de tentatives qu'il faut à l'attaquant pour deviner votre mot de passe contenant ce mot!</p>
+
+        <table border="1">
+            <tr>
+                <th>Category</th>
+                <th>Values</th>
+            </tr>
+            {% for category, values in estimation %}
+            <tr>
+                <td>{{ category }}</td>
+                <td>
+                    {% for value in values %}
+                        {{ value }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
