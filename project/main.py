@@ -53,25 +53,35 @@ def upload():
 def my_link():
         
     # Example input
-    input_text = "Georges est un homme de taille moyenne, de poids moyen, de visage banal, et à vrai dire, il ne présente aucun signe distinctif qui justifierais qu’on l’évoque ici, si ce n’est que d’après le commissaire, il était charmant. Georges est camionneur de profession, mais avant tout de passion, passion qui l’a même poussé à arrêter ses études de mathématiques, lorsqu’il a découvert qu’un mathématicien était rarement amené à conduire des camions. Il aime également beaucoup les chiffres et les choses symétriques, comme nous avons pu le constater précédemment. Cette passion l’a même poussé par le passé à acheter des choses dont il n’avait absolument pas besoin, juste pour satisfaire la symétrie de son appartement. Georges vit donc dans un appartement, modeste loft positionné au plein centre de Toulouse, hérité de ses parents, décédés d’un accident de chasse il y a de cela des années. Pour ce qui est de l’héritage, Georges n’aura pas eu à se battre, étant fils unique, et voilà donc pourquoi il habite là, malgré un salaire de camionneur qui ne lui permettrais pas d’acheter pareil endroit. Georges est un homme de goût, et en tant qu’homme de goût, il aime manger son pâté de campagne sur un pain de mie Harrys (celui aux céréales). C’est en revenant de ses courses que l’accident est arrivé. L’accident, en lui-même, n’avait que peu d’importance et n’allait pas impacter la vie de Georges outre mesure, si ce n’est pour le doux souvenir d’avoir mangé un excellent aligot."
-
+    input_text = "Aujourd'hui j'ai acheté du pain. Il faisait beau ! J'adore les croissants, je n'ai pas pu m'empêcher d'en acheter 5! Regardez cette photo de mon chat Patrice, n'est-il pas mignon ? Joyeux anniversaire Catherine ! Bravo à mon petit-fils qui vient d'avoir le bac ! Patrice n'aime pas sa pâté... Une dernière vidéo de chat, ils sont tout mignons. Patrice fête ses un ans aujourd'hui.Une journée bien remplie aujourd'hui ! J'ai fait un saut à la boulangerie pour du pain frais sous ce beau soleil ! Et devinez quoi ? Les croissants étaient irrésistibles, j'en ai pris 5 ! Regardez qui est de retour pour vous faire sourire ! Patrice, mon adorable petit chat, vous envoie des câlins et des ronrons ! \#ChatAdorable. Un joyeux anniversaire à Catherine, une personne merveilleuse qui apporte de la joie à tous ceux qui l'entourent ! C'est avec une immense fierté que je félicite mon petit-fils pour son succès au bac ! Bravo pour tout ton travail acharné \#FierGrandParent. Il semblerait que Patrice soit un fin gourmet... Il boudine sa pâté aujourd'hui ! \#ChatCapricieux. Besoin d'une dose de mignonnerie pour égayer votre journée ? Ne cherchez pas plus loin ! Voici une dernière vidéo adorable de nos amis à quatre pattes ! \#ChatonsMignons. Mon Patrice chéri fête ses un an aujourd'hui ! Comment le temps passe vite ! Joyeux anniversaire à mon petit rayon de soleil ! Aujourd'hui, j'ai exploré un nouveau sentier de randonnée dans les montagnes. La vue était à couper le souffle ! Je viens de terminer un nouveau livre fascinant. Recommanderiez-vous une lecture captivante ? Quelqu'un a des conseils pour améliorer mes compétences en cuisine ? J'ai envie d'essayer de nouvelles recettes ce week-end ! J'ai assisté à un concert incroyable hier soir. La musique live a vraiment le pouvoir de transporter ! Je suis tombé sur un vieux album photo et j'ai été submergé par les souvenirs. Quels sont vos moments préférés à revivre en photos ? J'ai récemment commencé à apprendre une nouvelle langue. C'est un défi stimulant mais tellement enrichissant ! Après des mois de travail acharné, j'ai enfin terminé mon projet artistique. C'est une sensation incroyable de voir son travail aboutir ! J'ai découvert une nouvelle série sur Netflix et je suis déjà accro ! Des recommandations de séries à regarder ? Je suis impressionné par les progrès technologiques récents. Quelles innovations vous ont le plus marqué récemment ? Hier, j'ai visité une exposition d'art moderne. C'était une expérience vraiment inspirante ! Quel est l'art qui vous touche le plus ? Je suis en train de planifier mes prochaines vacances. Des destinations de voyage à recommander ? J'ai eu une discussion fascinante avec un ami sur l'avenir de l'humanité dans l'espace. Quelles sont vos réflexions sur l'exploration spatiale ?"
+    
     # Define allowed NER tags
     allowed_tags = ["GPE", "LOC", "PERSON", "CARDINAL", "DATE"]
 
     # Perform NER and data decomposition
+    print("########  DECONPOSITION  ########")
     df_words, NER_neutral = decompose(input_text)
+    
+    print("DF: ", df_words)
+    print("NER_neutral: ", NER_neutral)
 
     # Filter NER neutral and df_words to allowed tags
+    print("########  FILTER NER  ########")
     filtered_ner_neutral = filter_ner_neutral_tags(NER_neutral, allowed_tags)
+    print("filtered NER: ",filtered_ner_neutral)
+    
+    print("########  FILTER DF  ########")
     filtered_df_words = filter_df_tags(df_words, allowed_tags)
+    print("filtered DF: ", filtered_df_words)
 
     # Generate passwords based on filtered NER and df_words
     #result = generate_passwords(filtered_ner_neutral, filtered_df_words)
+    print("########  ENTRY GENERATION  ########")
     result, estimation = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
     
 #    return str(result)
     return estimation
-    
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,3 +1,20 @@
+
+#TODO : automate 
+def calculate_string_effort(p, politque, n_special ,n_digit,n_specials):
+    output=[]
+    k=0
+    
+    for policy in politiques:
+        components = policy.split()
+        
+        #UPDATE l
+        #UPDATE k
+        
+        output.append((policy, L))
+    
+    return output
+
+
 def estimate_effort(string_list, digit_list, special_list):
     n_string = len(string_list)
     n_digit = len(digit_list)
