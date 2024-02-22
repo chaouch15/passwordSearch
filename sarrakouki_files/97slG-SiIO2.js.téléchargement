@@ -1,4 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("coerceRelayImage_image.graphql",[],(function(a,b,c,d,e,f){"use strict";a={argumentDefinitions:[],kind:"Fragment",metadata:{mask:!1},name:"coerceRelayImage_image",selections:[{alias:null,args:null,kind:"ScalarField",name:"height",storageKey:null},{alias:null,args:null,kind:"ScalarField",name:"scale",storageKey:null},{alias:null,args:null,kind:"ScalarField",name:"uri",storageKey:null},{alias:null,args:null,kind:"ScalarField",name:"width",storageKey:null}],type:"Image",abstractKey:null};e.exports=a}),null);
-__d("coerceRelayImage",["coerceRelayImage_image.graphql"],(function(a,b,c,d,e,f,g){"use strict";var h;h!==void 0?h:h=b("coerceRelayImage_image.graphql");function a(a){return{height:(a.height||0)/(a.scale==null?1:a.scale),sprited:0,uri:a.uri,width:(a.width||0)/(a.scale==null?1:a.scale)}}g["default"]=a}),98);

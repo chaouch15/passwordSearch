@@ -1,4 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("EventCometHomeRootQuery_facebookRelayOperation",[],(function(a,b,c,d,e,f){e.exports="7269379803074697"}),null);
-__d("EventDiscoveryTabType.facebook",["$InternalEnum"],(function(a,b,c,d,e,f){a=b("$InternalEnum").Mirrored(["ARTS_CULTURE","CAUSES","CUSTOM","FILM","FITNESS","FOLLOWING","FOOD_DRINK","FRIENDS","GROUPS","HEALTH","KID_FRIENDLY","LEARNING_CLASS","LIVE_NOW","LOCAL","MUSIC","NETWORKING","NIGHTLIFE","NOW","ONLINE","POPULAR_NOW","RECOMMENDED","RELIGION","SALE","SHOPPING","THIS_WEEK","TOP_CATEGORY"]);c=a;f["default"]=c}),66);
