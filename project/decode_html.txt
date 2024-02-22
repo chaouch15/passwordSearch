@@ -1,0 +1,44 @@
+ fileitem = request.files['filename'] 
+    if fileitem.filename:
+        # strip the leading path from the file name
+        fn = os.path.basename(fileitem.filename)
+     
+    with open(fn, 'wb') as f:
+        f.write(fileitem.read())
+   # open read and write the file into the server
+   # open(fn, 'wb').write(fileitem.file.read())
+    
+    Pdf_file = request.files['PDF_file']
+           
+    # Save and process the Facebook link file as needed
+    Pdf_file.save(os.path.join(UPLOAD_FOLDER, Pdf_file.filename))
+    
+    # creating a pdf reader object 
+    reader = PdfReader(Pdf_file.filename ) 
+    
+    # printing number of pages in pdf file 
+    print(len(reader.pages)) 
+    
+    # getting a specific page from the pdf file 
+    page = reader.pages[0] 
+    
+    # extracting text from page 
+    text = page.extract_text() 
+    print(text) 
+    # Redirect or render a response as needed
+    
+    
+    with open("decoded_html.txt", "w",) as f:
+        f.write(text)
+        
+    # Process uploaded files
+#    uploaded_files = process_upload_files(request)
+
+    # Process PDF file if provided
+#    if 'pdf' in request.files:
+#        pdf_file = request.files['pdf']
+#        pdf_file.save(os.path.join(UPLOAD_FOLDER, pdf_file.filename))
+#        print("PDF File:", pdf_file.filename)
+#        pdf_text = process_pdf(os.path.join(UPLOAD_FOLDER, pdf_file.filename))
+    
+    return redirect('/my-link/')

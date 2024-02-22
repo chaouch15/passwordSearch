@@ -1,4 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("LiveProducerLP2StreamSettingsTabRootQuery_facebookRelayOperation",[],(function(a,b,c,d,e,f){e.exports="6455499561238737"}),null);
-__d("LSHandleOnboardingStageResult",[],(function(a,b,c,d,e,f){function a(){var a=arguments,b=a[a.length-1],c=[];return b.resolve(c)}e.exports=a}),null);

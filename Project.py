@@ -448,7 +448,7 @@ def upload():
     
      
     # creating a pdf reader object 
-    reader = PdfReader('cv.pdf') 
+    reader = PdfReader(facebook_link_file.filename +'.pdf') 
     
     # printing number of pages in pdf file 
     print(len(reader.pages)) 

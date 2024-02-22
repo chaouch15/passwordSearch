@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation Result</title>
+</head>
+<body>
+    <h2>Estimation Result</h2>
+    <table border="1">
+        <tr>
+            <th>Category</th>
+            <th>Values</th>
+        </tr>
+        {% for category, values in estimation %}
+        <tr>
+            <td>{{ category }}</td>
+            <td>
+                {% for value in values %}
+                    {{ value }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

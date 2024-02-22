@@ -66,36 +66,19 @@
         <label for="dateOfBirth">Date de naissance:</label>
         <input type="date" id="dateOfBirth" name="dateOfBirth" required>
 
-        <label for="age">Âge:</label>
-        <select id="age" name="age" required>
-            <option value="">Sélectionnez votre âge</option>
-            <!-- JavaScript to generate options for age dropdown -->
-            <script>
-                var ageDropdown = document.getElementById('age');
-                for (var i = 0; i <= 99; i++) {
-                    var option = document.createElement('option');
-                    option.value = i;
-                    option.text = i;
-                    ageDropdown.appendChild(option);
-                }
-            </script>
+      
         </select>
 
-        <label for="instagramLink">Lien Instagram (HTML):</label>
-        <input type="file" id="instagramLink" name="instagramLink">
+        <label for="PDF_file">PDF file:</label>
+        <input type="file" id="PDF_file" name="PDF_file">
 
-        <label for="facebookLink">Lien Facebook (HTML):</label>
-        <input type="file" id="facebookLink" name="facebookLink">
+        <button type="submit" name="action" value="my-link">Estimations</button> 
+        <!-- Bouton pour rediriger vers "/my-link-bis/" -->
+        <button type="submit" name="action" value="my-link-bis">Passwords</button> 
+      
+   </form>
 
-        <button type="submit" value="upload">upload</button> 
-       
-    </form>
-   
-       
 
-        <form action="/my-link/">
-            <button type="submit" value="Valider">Valider</button> 
-        </form>
        
         
   
