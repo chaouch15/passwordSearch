@@ -12,7 +12,7 @@
             padding: 0;
         }
         .container {
-            width: 50%;
+            width: 70%;
             margin: auto;
             padding: 20px;
             background-color: white;
@@ -57,17 +57,25 @@
 
         <table border="1">
             <tr>
-                <th>Category</th>
-                <th>Values</th>
+                <th>Combinaisons Possibles</th>
+                {% for column in ['string digit', 
+                     'string', 'digit', 
+                     'digit string', 
+                     'string digit string', 
+                     'digit string digit', 
+                     'string special string', 
+                     'string special digit', 
+                     'string special', 
+                     'string digit special']%}
+                    <th>{{ column }}</th>
+                {% endfor %}
             </tr>
             {% for category, values in estimation %}
             <tr>
                 <td>{{ category }}</td>
-                <td>
-                    {% for value in values %}
-                        {{ value }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
+                {% for value in values %}
+                    <td>{{ value }}</td>
+                {% endfor %}
             </tr>
             {% endfor %}
         </table>

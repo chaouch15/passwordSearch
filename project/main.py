@@ -26,6 +26,16 @@ BIRTHDAY=''
 ENTRIES=[]
 ESTIMATIONS={}
 
+COMBINATIONS_COLS = ['string digit', 
+                     'string', 'digit', 
+                     'digit string', 
+                     'string digit string', 
+                     'digit string digit', 
+                     'string special string', 
+                     'string special digit', 
+                     'string special', 
+                     'string digit special']
+
 @app.route('/')
 def index():
     return render_template('web-tool.html')
@@ -124,7 +134,7 @@ def generator():
 #    result = generate_passwords(filtered_ner_neutral, filtered_df_words)
 
     # Generate PERSONAL passwords based on filtered NER and df_words
-    print("GENRATION")
+    print("GENERATION")
     global ESTIMATIONS
     global ENTRIES
     ENTRIES, ESTIMATIONS = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
