@@ -13,13 +13,14 @@ from tqdm import tqdm
 import spacy
 import nltk
 #nltk.download('punkt')
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
 from vaderSentiment_fr.vaderSentiment import SentimentIntensityAnalyzer
 from nltk import tokenize
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 import itertools
+
 
 stopWords = set(stopwords.words('french'))
 stemmer = SnowballStemmer(language='french')
@@ -42,11 +43,11 @@ stopWords.add("c'")
 
 #takes a sentence as a uniq string, returns a list of words without the stopwords
 def cleaning_sentence(sentence):
-  clean =[]
-  for token in nlp(sentence):
-    if token.text not in stopWords:
-        clean.append(token.text)
-  return clean
+    clean =[]
+    for token in nlp(sentence):
+        if token.text not in stopWords:
+            clean.append(token.text)
+    return clean
 
   #Supposé réduire les mots à leur racine marche approximativement
 def racine(sentence):

@@ -1,3 +1,4 @@
+import pandas as pd
 from modules.preprocessing import cleaning_sentence, racine, gramm, extract_racines, filter_words
 from modules.ner import retrieve_ner
 from modules.lexicon import get_sentiment, categorize_sentiment, detect_emotion, from_text_to_positive_sentences
@@ -7,11 +8,9 @@ from modules.assemble_and_filter import filter_df_tags, filter_ner_neutral_tags,
 from modules.password_generator import generate_passwords, generate_personal_passwords
 from modules.effort_estimator import estimate_effort
 from modules.pdf_reader import process_pdf, process_upload_files
-from flask import Flask, render_template, request, redirect, session
 import os
 from PyPDF2 import PdfReader 
- 
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, session
 from werkzeug.utils import secure_filename
 
 
@@ -24,7 +23,7 @@ SURNAME=''
 NAME=''
 BIRTHDAY=''
 ENTRIES=[]
-ESTIMATIONS={}
+ESTIMATIONS=[]
 
 COMBINATIONS_COLS = ['string digit', 
                      'string', 'digit', 
@@ -111,34 +110,48 @@ def generator():
     
     print("======================== START GENERATOR ========================")
 
+    # OUTPUT FILE
+    with open('output.txt', 'w') as f:
     
-    # Read the entire content of the file
-    print("READING PDF")
-    with open('pdf_file.txt', 'r') as file:
-        file_content = file.read()
-    input_text = file_content
+        # Read the entire content of the file
+        print("READING PDF",file=f)
+        with open('pdf_file.txt', 'r') as file:
+            file_content = file.read()
+        input_text = file_content
+        
+        # Define allowed NER tags
+        allowed_tags = ["GPE", "LOC", "PERSON", "CARDINAL", "DATE"]
+
+        # Perform NER and data decomposition
+        print("DECOMPOSING",file=f)
+        df_words, NER_neutral = decompose(input_text)
     
-    # Define allowed NER tags
-    allowed_tags = ["GPE", "LOC", "PERSON", "CARDINAL", "DATE"]
+        pd.set_option('display.max_rows', 200)  
+        pd.set_option('display.max_columns', 20) 
+        
+        print("DF WORDS    : ", df_words,file=f)
+        print("NER Neutral : ", NER_neutral,file=f)
 
-    # Perform NER and data decomposition
-    print("DECOMPOSING")
-    df_words, NER_neutral = decompose(input_text)
+        # Filter NER neutral and df_words to allowed tags
+        print("FILTERS",file=f)
+        filtered_ner_neutral = filter_ner_neutral_tags(NER_neutral, allowed_tags)
+        filtered_df_words = filter_df_tags(df_words, allowed_tags)
 
-    # Filter NER neutral and df_words to allowed tags
-    print("FILTERS")
-    filtered_ner_neutral = filter_ner_neutral_tags(NER_neutral, allowed_tags)
-    filtered_df_words = filter_df_tags(df_words, allowed_tags)
+        print("Filtered DF WORDS    : ", filtered_df_words,file=f)
+        print("Filtered NER Neutral : ", filtered_ner_neutral,file=f)
 
-    # Generate passwords based on filtered NER and df_words
-#    result = generate_passwords(filtered_ner_neutral, filtered_df_words)
+        # Generate passwords based on filtered NER and df_words
+    #    result = generate_passwords(filtered_ner_neutral, filtered_df_words)
 
-    # Generate PERSONAL passwords based on filtered NER and df_words
-    print("GENERATION")
-    global ESTIMATIONS
-    global ENTRIES
-    ENTRIES, ESTIMATIONS = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
-    
+        # Generate PERSONAL passwords based on filtered NER and df_words
+        print("GENERATION",file=f)
+        global ENTRIES
+        global ESTIMATIONS
+        ENTRIES, ESTIMATIONS = generate_personal_passwords(filtered_ner_neutral, filtered_df_words,SURNAME,NAME,BIRTHDAY)
+        
+        print("Entries     : ", ENTRIES,file=f)
+        print("Estimations : ", ESTIMATIONS,file=f)
+        
     print("======================== END GENERATOR ========================")
     return "GENERATION : OK!"
       
