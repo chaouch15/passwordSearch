@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des mot de passe</title>
-
+    <title>Ready to go !</title>
     <style>
-        * {margin:0;
+         * {margin:0;
             padding: 0;
             box-sizing: border-box;
          }
@@ -41,7 +40,7 @@
         .container {
             width: 50%;
             margin:  50px auto 0;
-            padding: 20px;
+            padding: 60px 20px 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -51,39 +50,40 @@
         }
         h2 {
             text-align: center;
+            
         }
-        .catchy-text {
-            font-size: 1.2em; /* Larger font size */
-            color: #800000; /* Burgundy color */
-            font-weight: bold; /* Bold text */
-            margin-top: 20px; /* Add some space between title and text */
+        
+        input, select {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 15px;
+            display: inline-block;
         }
-        .word-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        #eyeIcon {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
-        .word-list li {
-            margin-bottom: 5px;
-            padding: 8px 12px;
-            background-color: #f8f8f8;
+        .basic_button {
+            padding: 20px;
+            background-color: #800000; /* Burgundy color */
+            color: white;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            word-break: break-all;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
         }
- 
-        .back-buttons {
+     
+       
+        .back-button {
             position: absolute;
             top: 20px;
             right: 20px;
-            display: block;
-            flex-direction: column;
-            text-align: right;
         }
-        .back-buttons button {
-          
-            margin-bottom: 10px; 
-        }
+
     </style>
 </head>
 <body>
@@ -95,7 +95,7 @@
 
 
 
-
+    
     <section>
         <span></span> 
         <span></span> 
@@ -607,7 +607,6 @@
         <span></span> 
         <span></span> 
         <span></span> 
-       
         <span></span> 
         <span></span> 
         <span></span> 
@@ -737,36 +736,24 @@
         <span></span> 
         <span></span> 
         <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-        <span></span> 
-      
+  
      </section>
-    <div class="container">
-        <h2>Liste des mot de passe</h2>
-        <form id="passwords_list" action="/entries" method="POST" enctype="multipart/form-data">
+<div class="container">
+    <h2 style="text-align: center;">Ready to go !</h2>
+    <form id="choices" action="/choices" method="POST" enctype="multipart/form-data">
 
+        <button type="submit" name="action" value="estimations" class="basic_button">Estimations</button> 
+        <button type="submit" name="action" value="entries" class="basic_button">Passwords</button> 
         <button type="submit" name="action" value="back" class="back-button">Revenir</button> 
-        <button type="submit" name="action" value="home" class="back-button">Acceuil</button> 
-           
-        <p class="catchy-text">Dictionnaire de mots de passes possibles générées avec vos informations. N'utilisez pas un mot de passe se trouvant dans la liste !</p>
+          
+   </form>
+
+
+       
         
-        <ul class="word-list">
-            {% for word in words %}
-            <li>{{ word }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+  
+    
+</div>
+ 
 </body>
 </html>

@@ -95,14 +95,10 @@ def upload_infos():
 def upload():
     
     upload_infos()
-    
     action = request.form['action']
-    if action == 'generator':
-        return redirect('/generator/')
-    elif action == 'estimations':
-        return redirect('/estimations/') 
-    elif action == 'entries':
-        return redirect('/entries/') 
+    action == 'generator'
+    return redirect('/generator/')
+   
  
 
 @app.route('/generator/')
@@ -153,22 +149,41 @@ def generator():
         print("Estimations : ", ESTIMATIONS,file=f)
         
     print("======================== END GENERATOR ========================")
-    return "GENERATION : OK!"
-      
-    
+    return render_template('choices.html')
 
-@app.route('/estimations/')
-def estmations():
+@app.route('/choices', methods=['POST'])
+def choices():
+    action = request.form['action']
+ 
+    if action == 'estimations':
+        return render_template('estimation_results.html', estimation=ESTIMATIONS)
+    elif action == 'entries':
+        return render_template('passwords_list.html', words=ENTRIES)
+    elif action == 'back':
+        return redirect('/')
+
+@app.route('/estimations/', methods=['POST'])
+def estimations():
+    action = request.form['action']
     # Render the template with the estimations data
-    return render_template('estimation_results.html', estimation=ESTIMATIONS)
-
+    if action == 'back':
+        return render_template('choices.html')
+    elif action == 'home':
+        return redirect('/')
+   
+    
   
 
-@app.route('/entries/')
+@app.route('/entries/', methods=['POST'])
 def entries():
+    action = request.form['action']
+ 
     # Render the template with the entries data
-    return render_template('passwords_list.html', words=ENTRIES)
-
+    if action == 'back':
+        return render_template('choices.html')
+    elif action == 'home':
+        return redirect('/')
+    
 
 
 if __name__ == '__main__':
